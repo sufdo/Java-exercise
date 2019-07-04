@@ -1,4 +1,5 @@
 # Java-exercise
-Diamond pattern 
+1. Diamond pattern 
+2. Multiplication Table
 
 
