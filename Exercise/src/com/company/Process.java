@@ -21,7 +21,8 @@ public class Process {
         Student.getAllStudents().stream()
                 .forEach(System.out::println);
 
-        //Student.getAllStudents().stream().forEach(System.out::println);
+        Student.getAllStudents().stream().forEach(s-> s.getName().toUpperCase());
+
 
     }
 

@@ -3,17 +3,32 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        /*
+ /*
         withoutStream();
         stream();
-        */
         streamNames();
+
+  */
+
+        //Sorting map
+        printMapByKey();
+        printMapByValue();
+
+
+
+
+
+
     }
 
     public static void withoutStream(){
@@ -57,6 +72,49 @@ public class Application {
 
 
     }
+
+    public static void printMapByKey(){
+
+        Map<String, Integer> result = Maps.getDetails().entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        System.out.println(result);
+
+     //Map<String, Integer> result2 = Maps.getDetails().entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
+         /*
+         Map<String, Integer> result = new HashMap<>();
+        map.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+       */
+    }
+
+
+    public static void printMapByValue(){
+
+         Map<String, Integer> result = Maps.getDetails().entrySet().stream()
+                .sorted(Map.Entry.comparingByValue()) //to sort in descending order [.comparingByValue(Comparator.reverseOrder())]
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        System.out.println(result);
+
+        //Map<String, Integer> result2 = Maps.getDetails().entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+        /*
+        Map<String, Integer> result = new LinkedHashMap<>();
+        map.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+       */
+    }
+
+
+
+
+
+
+
 
 
 }
